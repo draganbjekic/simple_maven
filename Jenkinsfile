@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('build'){
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean package'
             }
             post {
                 success {
@@ -14,7 +14,7 @@ pipeline {
     }
     post {
         always {
-            mail to :"bjekic.beograd@yahoo.com",
+            mail to :"recipient@company.com",
                 subject: "New build report: ${currentBuild.fullDisplayName}",
                 body:"Check out status at ${env.BUILD_URL}"
         }
